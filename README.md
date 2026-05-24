@@ -45,41 +45,7 @@ npm run dev
 
 Фронтенд на `http://127.0.0.1:5173`, проксирует API на `http://127.0.0.1:8000`.
 
----
 
-## Переменные окружения
-
-`.env` (не коммитится):
-
-```env
-OPENAI_API_KEY=sk-...               # опц.; основная LLM (relevance gate, карточки, self-review)
-OPENAI_MODEL=gpt-4o-mini            # по умолчанию
-GEMINI_API_KEY=AIza...              # опц.; Gemini-верификатор (кросс-критика сигналов)
-FIRECRAWL_API_KEY=fc-...            # нужен для режимов поиска и обхода
-
-# Auth
-SESSION_COOKIE_SECURE=               # true — только HTTPS; на локали оставить пустым
-ADMIN_LOGIN=admin
-ADMIN_PASSWORD=...
-# ADMIN_PASSWORD_HASH=$2b$12$...     # альтернатива: уже-готовый bcrypt-хеш
-# APP_DB_PATH=data/app.db            # путь SQLite (по умолчанию data/app.db)
-
-# Security
-DEBUG=false                          # true — включает /docs, /redoc и CORS для localhost
-```
-
-`SESSION_SECRET` задавать вручную не нужно: при первом старте бэкенд генерирует случайный секрет и сохраняет его рядом с SQLite (`data/.session_secret`). Файл в `.gitignore`.
-
-**Режимы LLM:**
-
-| Ключи | Режим |
-|---|---|
-| OpenAI + Gemini | Полный: relevance gate → карточки → кросс-критика (оба потока) → консенсус |
-| Только OpenAI | OpenAI self-review (адвокат дьявола), без Gemini |
-| Только Gemini | Только Gemini-критика |
-| Нет ключей | Rule-based fallback, LLM не вызывается |
-
-Статус LLM: `GET /api/llm-status`.
 
 ---
 
