@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pandas
+pydantic
+python-dotenv
+requests
+firecrawl-py
+bcrypt
+PyJWT

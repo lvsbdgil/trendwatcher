@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "dev": "vite --configLoader native",
+    "build": "vite build --configLoader native",
+    "preview": "vite preview --configLoader native"
+  },
+  "dependencies": {
+    "vite": "^6.0.5"
+  },
+  "type": "module"
+}
